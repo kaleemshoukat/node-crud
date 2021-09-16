@@ -1,4 +1,22 @@
 <div class="col-md-12">
+
+    <% if(typeof errorMessage !== "undefined"){ %>
+    <div class="alert alert-danger">
+        <ul>
+            <% for(var i = 0; i < errorMessage['details'].length; i++){ %>
+                <li> <%= errorMessage['details'][i]['message'] %> </li>
+            <% } %>
+        </ul>
+    </div>
+    <% } %>
+    <% if (typeof successMessage !== "undefined") { %>
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <%= successMessage %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    <% } %>
     <form action="/submit-post" method="post">
         <div class="row">
             <div class="col-md-8">

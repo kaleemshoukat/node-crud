@@ -1,4 +1,20 @@
 <div class="col-md-12 table-responsive">
+    <% if (typeof errorMessage !== "undefined") { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= errorMessage %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %>
+    <% if (typeof successMessage !== "undefined") { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= successMessage %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -8,11 +24,13 @@
             </tr>
         </thead>
         <tbody>
+        <% for(var i=0; i < posts.length; i++) { %>
             <tr>
-               <td>1</td>
-               <td>1</td>
-               <td>1</td>
+               <td><%= posts[i]['id'] %></td>
+               <td><%= posts[i]['title'] %></td>
+               <td><%= posts[i]['description'] %></td>
             </tr>
+        <% } %>
         </tbody>
     </table>
 </div>
