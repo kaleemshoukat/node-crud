@@ -1,4 +1,5 @@
 const Joi = require('joi');     //joi is validator
+const response = require('../helpers/response');     //helper
 
 const posts= (req, res) => {
     res.render('posts.ejs', {title: 'Posts'});
@@ -16,6 +17,7 @@ const submitPost= (req, res) => {
     }
     else {
         console.log(req.body);
+        console.log(response.error());
     }
 
 }
