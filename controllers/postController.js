@@ -1,5 +1,6 @@
 const Joi = require('joi');     //joi is validator
-const response = require('../helpers/response');     //helper
+const responser = require('../helpers/responser');     //helper
+const Post = require('../models/Post');     //helper
 
 const posts= (req, res) => {
     res.render('posts.ejs', {title: 'Posts'});
@@ -13,13 +14,18 @@ const submitPost= (req, res) => {
 
     const validate = schema.validate(req.body);
     if(validate.error){
-        return response.validation(validate.error);
+        res.json(responser.validation(validate.error));
     }
     else {
         console.log(req.body);
-        console.log(response.error());
-    }
+        let post=new Post({
+            title: req.body.title,
+            description: req.body.description,
+        })
+        post.save();
 
+        res.json(responser.success());
+    }
 }
 
 
