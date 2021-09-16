@@ -5,8 +5,9 @@ const router  = express.Router();
 const postController = require('../controllers/postController');
 
 //routes
-router.get('/posts', postController.posts);
+router.get('/add-post', postController.addPost);
 router.post('/submit-post', postController.submitPost);
+router.get('/posts', postController.posts);
 
 
 

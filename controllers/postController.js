@@ -2,8 +2,8 @@ const Joi = require('joi');     //joi is validator
 const responser = require('../helpers/responser');     //helper
 const Post = require('../models/Post');     //helper
 
-const posts= (req, res) => {
-    res.render('posts.ejs', {title: 'Posts'});
+const addPost= (req, res) => {
+    res.render('add-post.ejs', {title: 'Add Post'});
 }
 
 const submitPost= (req, res) => {
@@ -17,7 +17,6 @@ const submitPost= (req, res) => {
         res.json(responser.validation(validate.error));
     }
     else {
-        console.log(req.body);
         let post=new Post({
             title: req.body.title,
             description: req.body.description,
@@ -28,9 +27,15 @@ const submitPost= (req, res) => {
     }
 }
 
+const posts=(req, res)=>{
+    const posts=Post.find();
+    console.log(posts)
+    res.render('posts.ejs', {title: 'Posts', posts: posts});
+}
 
 //export controller functions
 module.exports = {
-    posts,
-    submitPost
+    addPost,
+    submitPost,
+    posts
 };
