@@ -11,9 +11,9 @@ const submitPost= (req, res) => {
         description: Joi.string().min(3).max(1000).required(),
     });
 
-    const validation = schema.validate(req.body);
-    if(validation.error){
-        return res.status(422).send(validation.error);
+    const validate = schema.validate(req.body);
+    if(validate.error){
+        return response.validation(validate.error);
     }
     else {
         console.log(req.body);
