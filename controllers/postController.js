@@ -12,7 +12,14 @@ const submitPost= (req, res) => {
         description: Joi.string().min(3).max(1000).required(),
     });
 
-    const validate = schema.validate(req.body);
+    // schema options
+    const options = {
+        abortEarly: false, // include all errors
+        allowUnknown: true, // ignore unknown props
+        stripUnknown: true // remove unknown props
+    };
+
+    const validate = schema.validate(req.body, options);
     if(validate.error){
         res.json(responser.validation(validate.error));
     }
