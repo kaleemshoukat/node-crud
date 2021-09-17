@@ -22,13 +22,13 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="">Title</label>
-                    <input type="text" name="title" class="form-control">
+                    <input type="text" name="title" value="<% if(typeof errorMessage !== "undefined"){ %> <%- inputData.title %> <% } %>" class="form-control">
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="">Description</label>
-                    <input type="text" name="description" class="form-control">
+                    <input type="text" name="description" value="<% if(typeof errorMessage !== "undefined"){ %> <%- inputData.description %> <% } %>" class="form-control">
                 </div>
             </div>
             <div class="col-md-8">

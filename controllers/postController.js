@@ -21,7 +21,7 @@ exports.submitPost= (req, res) => {
     const validation = schema.validate(req.body, options);
     if(validation.error){
         console.log(validation.error)
-        res.render("add-post.ejs", {title: 'Add Post', errorMessage: validation.error});
+        res.render("add-post.ejs", {title: 'Add Post', errorMessage: validation.error, inputData: req.body});
     }
     else {
         let post=new Post({
