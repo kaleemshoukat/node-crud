@@ -2,7 +2,7 @@ const Joi = require('joi');     //joi is validator
 const Post = require('../models/Post');     //helper
 
 exports.addPost= (req, res) => {
-    res.render('add-post.ejs', {title: 'Add Post'});
+    res.render('add-post.ejs', {title: 'Add Post', csrfToken: req.csrfToken()});
 }
 
 exports.submitPost= (req, res) => {

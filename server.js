@@ -3,6 +3,8 @@ const expressLayouts = require('express-ejs-layouts');
 const bodyParser= require('body-parser');
 const morgan= require('morgan');
 const dotenv = require('dotenv');
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 // Static Files (we dont need to write public word in the links)
@@ -29,6 +31,10 @@ if (process.env.NODE_ENV === 'development') {
 // This will parse form data (middleware)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+//csrf token
+app.use(cookieParser());    // we need this because "cookie" is true in csrfProtection
+app.use(csrf({ cookie: true }));
 
 // import the routes
 const generalRoutes = require('./routes/generalRoutes');
