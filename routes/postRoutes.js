@@ -8,6 +8,7 @@ const postController = require('../controllers/postController');
 router.get('/add-post', postController.addPost);
 router.post('/submit-post', postController.submitPost);
 router.get('/posts', postController.posts);
+router.get('/delete-post/:id', postController.delete);
 
 
 

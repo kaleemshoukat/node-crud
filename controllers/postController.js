@@ -34,8 +34,13 @@ exports.submitPost= (req, res) => {
     }
 }
 
-exports.posts=(req, res)=>{
-    const posts=Post.find();
-    console.log(posts)
+exports.posts=async (req, res)=>{
+    const posts=await Post.find();
     res.render('posts.ejs', {title: 'Posts', posts: posts});
 }
+
+exports.delete= async (req, res, id) => {
+    await Post.findByIdAndDelete(id)
+    res.redirect('/posts')
+}
+

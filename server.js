@@ -48,11 +48,5 @@ app.use('/', generalRoutes);
 const postRoutes = require('./routes/postRoutes');
 app.use('/', postRoutes);
 
-//route test
-// app.get('/', (req,res) =>{
-//     //console.log('Hello!');
-//     res.render('home.ejs', {title: 'Home'});
-// });
-
 
 
