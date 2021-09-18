@@ -35,6 +35,11 @@ app.use(bodyParser.json());
 //csrf token
 app.use(cookieParser());    // we need this because "cookie" is true in csrfProtection
 app.use(csrf({ cookie: true }));
+//pass in all views (middleware)
+app.use(function(request,response,next){
+    app.locals._csrf = request.csrfToken()
+    next()
+})
 
 // import the routes
 const generalRoutes = require('./routes/generalRoutes');
