@@ -31,7 +31,7 @@
                <td><%= posts[i]['title'] %></td>
                <td><%= posts[i]['description'] %></td>
                <td>
-                   <button class="btn btn-primary" type="button">Edit</button>
+                   <a href="/edit-post/<%= posts[i]['id'] %>" class="btn btn-primary">Edit</a>
                    <a href="/delete-post/<%= posts[i]['id'] %>" class="btn btn-danger">Delete</a>
                </td>
             </tr>

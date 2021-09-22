@@ -1,5 +1,5 @@
 <div class="col-md-12">
-
+    <h2 class="text-danger">Add Post</h2>
     <% if(typeof errorMessage !== "undefined"){ %>
     <div class="alert alert-danger">
         <ul>
@@ -29,7 +29,7 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="">Description</label>
-                    <input type="text" name="description" value="<% if(typeof errorMessage !== "undefined"){ %><%-inputData.description%><% } %>" class="form-control">
+                    <textarea name="description" class="form-control"><% if(typeof errorMessage !== "undefined"){ %><%-inputData.description%><% } %></textarea>
                 </div>
             </div>
             <div class="col-md-8">
