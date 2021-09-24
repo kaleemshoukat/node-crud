@@ -1,5 +1,6 @@
 const Joi = require('joi');     //joi is validator
 const Post = require('../models/Post');     //model
+const paginate = require('express-paginate');
 
 exports.addPost= (req, res) => {
     res.render('add-post.ejs');
@@ -37,10 +38,26 @@ exports.submitPost= (req, res) => {
     }
 }
 
-exports.posts=async (req, res)=> {
+exports.posts=async (req, res, next)=> {
+    // try {
+    //     const posts=await Post.find({});
+    //     res.render('posts.ejs', {posts: posts});
+    // }
+    // catch (error) {
+    //     res.status(500).send(error);
+    // }
+
     try {
-        const posts=await Post.find({});
-        res.render('posts.ejs', {posts: posts});
+        const results=await Post.find({}).limit(req.query.limit).skip(req.skip).lean().exec();
+        const itemCount =await Post.count({});
+        const pageCount = Math.ceil(itemCount / req.query.limit);
+
+        res.render('posts.ejs', {
+            posts: results,
+            pageCount,
+            itemCount,
+            pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+        });
     }
     catch (error) {
         res.status(500).send(error);
