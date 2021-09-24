@@ -1,3 +1,6 @@
+<%- contentFor('title') %>
+Posts
+<%- contentFor('body') %>
 <div class="col-md-12 table-responsive">
     <% if (typeof errorMessage !== "undefined") { %>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -39,3 +42,8 @@
         </tbody>
     </table>
 </div>
+<script>
+    $(document).ready(function (){
+        console.log('test')
+    })
+</script>

@@ -1,6 +1,6 @@
 
 const home= (req, res) => {
-    res.render('home.ejs', {title: 'Home'});
+    res.render('home.ejs');
 }
 
 //export controller functions

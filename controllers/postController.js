@@ -1,8 +1,8 @@
 const Joi = require('joi');     //joi is validator
-const Post = require('../models/Post');     //helper
+const Post = require('../models/Post');     //model
 
 exports.addPost= (req, res) => {
-    res.render('add-post.ejs', {title: 'Add Post'});
+    res.render('add-post.ejs');
 }
 
 exports.submitPost= (req, res) => {
@@ -20,7 +20,7 @@ exports.submitPost= (req, res) => {
 
     const validation = schema.validate(req.body, options);
     if(validation.error){
-        res.render("add-post.ejs", {title: 'Add Post', errorMessage: validation.error, inputData: req.body});
+        res.render("add-post.ejs", {errorMessage: validation.error, inputData: req.body});
     }
     else {
         try{
@@ -29,7 +29,7 @@ exports.submitPost= (req, res) => {
             post.description= req.body.description
             post.save()
 
-            res.render("add-post.ejs", {title: 'Add Post', successMessage: 'Post created successfully!'});
+            res.render("add-post.ejs", {successMessage: 'Post created successfully!'});
         }
         catch (error) {
             res.status(500).send(error);
@@ -40,7 +40,7 @@ exports.submitPost= (req, res) => {
 exports.posts=async (req, res)=> {
     try {
         const posts=await Post.find({});
-        res.render('posts.ejs', {title: 'Posts', posts: posts});
+        res.render('posts.ejs', {posts: posts});
     }
     catch (error) {
         res.status(500).send(error);
@@ -60,7 +60,7 @@ exports.delete= async (req, res) => {
 exports.editPost= async (req, res) => {
     try{
         const post=await Post.findById(req.params.id)
-        res.render('edit-post.ejs', {title: 'Edit Post', post: post});
+        res.render('edit-post.ejs', {post: post});
     }
     catch (error) {
         res.status(500).send(error);
@@ -82,7 +82,7 @@ exports.updatePost= async (req, res) => {
 
     const validation = schema.validate(req.body, options);
     if(validation.error){
-        res.render("edit-post.ejs", {title: 'Edit Post', errorMessage: validation.error});
+        res.render("edit-post.ejs", {errorMessage: validation.error});
     }
     else {
         try{

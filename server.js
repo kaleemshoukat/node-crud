@@ -14,6 +14,7 @@ app.use(express.static('public'));
 app.use(expressLayouts);
 app.set('layout', './layouts/master');       //setting master as default
 app.set('view engine','ejs');
+app.set("layout extractScripts", true);
 
 //set listener
 dotenv.config();
@@ -33,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //csrf token
-app.use(cookieParser());    // we need this because "cookie" is true in csrfProtection
+app.use(cookieParser('secret'));    // we need this because "cookie" is true in csrfProtection
 app.use(csrf({ cookie: true }));
 //pass in all views (middleware)
 app.use(function(request,response,next){
